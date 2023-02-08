@@ -1,0 +1,74 @@
+{
+  "application_name": {
+    "searchPatterns": [
+      "cloudfoundry:$.application_name",
+      "env:K_SERVICE"
+    ]
+  },
+  "cloudant_apikey": {
+    "searchPatterns": [
+      "env:service_cloudant:$.apikey",
+      "file:/server/localdev-config.json:$.cloudant_apikey"
+    ]
+  },
+  "cloudant_host": {
+    "searchPatterns": [
+      "env:service_cloudant:$.host",
+      "file:/server/localdev-config.json:$.cloudant_host"
+    ]
+  },
+  "cloudant_iam_apikey_description": {
+    "searchPatterns": [
+      "env:service_cloudant:$.iam_apikey_description",
+      "file:/server/localdev-config.json:$.cloudant_iam_apikey_description"
+    ]
+  },
+  "cloudant_iam_apikey_name": {
+    "searchPatterns": [
+      "env:service_cloudant:$.iam_apikey_name",
+      "file:/server/localdev-config.json:$.cloudant_iam_apikey_name"
+    ]
+  },
+  "cloudant_iam_role_crn": {
+    "searchPatterns": [
+      "env:service_cloudant:$.iam_role_crn",
+      "file:/server/localdev-config.json:$.cloudant_iam_role_crn"
+    ]
+  },
+  "cloudant_iam_serviceid_crn": {
+    "searchPatterns": [
+      "env:service_cloudant:$.iam_serviceid_crn",
+      "file:/server/localdev-config.json:$.cloudant_iam_serviceid_crn"
+    ]
+  },
+  "cloudant_password": {
+    "searchPatterns": [
+      "env:service_cloudant:$.password",
+      "file:/server/localdev-config.json:$.cloudant_password"
+    ]
+  },
+  "cloudant_port": {
+    "searchPatterns": [
+      "env:service_cloudant:$.port",
+      "file:/server/localdev-config.json:$.cloudant_port"
+    ]
+  },
+  "cloudant_url": {
+    "searchPatterns": [
+      "env:service_cloudant:$.url",
+      "file:/server/localdev-config.json:$.cloudant_url"
+    ]
+  },
+  "cloudant_username": {
+    "searchPatterns": [
+      "env:service_cloudant:$.username",
+      "file:/server/localdev-config.json:$.cloudant_username"
+    ]
+  },
+  "cloudant_serviceInfo": {
+    "searchPatterns": [
+      "env:service_cloudant:$.serviceInfo",
+      "file:/server/localdev-config.json:$.cloudant_serviceInfo"
+    ]
+  }
+}

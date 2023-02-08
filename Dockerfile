@@ -4,7 +4,7 @@ RUN  dnf module install --nodocs -y nodejs:18 python39 --setopt=install_weak_dep
     && dnf install --nodocs -y make gcc gcc-c++  --setopt=install_weak_deps=0 --disableplugin=subscription-manager \
     && dnf clean all --disableplugin=subscription-manager
 RUN npm install --global npm@8.15.0
-    
+
 RUN mkdir -p /opt/app-root/src
 WORKDIR /opt/app-root/src
 COPY package.json /opt/app-root/src
@@ -15,6 +15,7 @@ COPY . .
 FROM registry.access.redhat.com/ubi8/nodejs-18-minimal:1
 
 COPY --from=build /opt/app-root/src /opt/app-root/src/
+COPY --from=build /opt/app-root/src/mappings.json /opt/app-root/src/server/config/mappings.json
 
 WORKDIR /opt/app-root/src
 
