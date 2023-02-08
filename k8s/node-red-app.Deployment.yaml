@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: node-red-app
+  name: node-red-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-red-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: node-red-app
+    spec:
+      containers:
+      - image: quay.io/jpetnik/node-red-app-ic:latest
+        name: node-red-app-ic
+        ports:
+        - containerPort: 3000
+        resources: {}
+        env:
+        - name: service_cloudant
+          valueFrom:
+            secretKeyRef:
+              name: cloudant
+              key: service_cloudant
+status: {}
