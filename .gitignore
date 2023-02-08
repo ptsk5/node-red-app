@@ -3,3 +3,5 @@
 node_modules/
 .node-red/
 vcap*
+
+*.Secret.yaml
