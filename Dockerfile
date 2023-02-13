@@ -15,7 +15,6 @@ COPY . .
 FROM registry.access.redhat.com/ubi8/nodejs-18-minimal:1
 
 COPY --from=build /opt/app-root/src /opt/app-root/src/
-COPY --from=build /opt/app-root/src/mappings.json /opt/app-root/src/server/config/mappings.json
 
 WORKDIR /opt/app-root/src
 
