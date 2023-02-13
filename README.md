@@ -7,7 +7,7 @@ docker build --platform=linux/amd64 -t quay.io/jpetnik/node-red-app-ic .
 docker push quay.io/jpetnik/node-red-app-ic:latest
 ```
 
-## Run locally from code
+## Run locally (from code)
 
 ```bash
 export CLOUDANT_URL="https://hostname"
@@ -35,7 +35,7 @@ Steps:
 - Log into the K8s/OCP cluster.
 - Apply yamls by: `kubectl apply -f k8s/`
 
-Disclaimer: Since this repository mainly targets a deployment to the free Kubernetes service in IBM cloud, the service is of the `NodePort` type.
+**Disclaimer**: Since this repository mainly targets a deployment to the free Kubernetes service in IBM cloud, the service is of the `NodePort` type.
 
 ## Environment variables
 
