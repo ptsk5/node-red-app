@@ -15,7 +15,7 @@
  **/
 
 // import dependencies
-const { NoAuthAuthenticator } = require('ibm-cloud-sdk-core');
+const { NoAuthAuthenticator, IamAuthenticator } = require('ibm-cloud-sdk-core');
 const { CloudantV1 } = require("@ibm-cloud/cloudant");
 
 var fs = require('fs');
@@ -87,9 +87,20 @@ var cloudantStorage = {
         appname = settings.prefix || require('os').hostname();
         dbname = settings.db || "nodered";
         url = settings.url;
+        apikey = settings.apikey; 
+        
+        authenticator = new NoAuthAuthenticator({});
+        if (apikey) {
+          authenticator = new IamAuthenticator({
+            apikey: apikey,
+          });
+          console.log("Using IAM authentication with the separate apikey stored in the configuration.")
+        } else {
+          console.log("Using basic authentication with the username/password included in the URL.")
+        }
 
-        client = CloudantV1.newInstance({
-            authenticator: new NoAuthAuthenticator({}),
+        client = new CloudantV1({
+          authenticator: authenticator,
         });
         
         client.setServiceUrl(url);

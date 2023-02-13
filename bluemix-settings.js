@@ -17,9 +17,8 @@
 var path = require("path");
 var fs = require("fs");
 
-const IBMCloudEnv = require('ibm-cloud-env');
-IBMCloudEnv.init('/server/config/mappings.json');
-const cloudantUrl = IBMCloudEnv.getString('cloudant_url');
+const cloudantUrl = process.env.CLOUDANT_URL;
+const cloudantApiKey = process.env.CLOUDANT_APIKEY;
 
 const REGEX_LEADING_ALPHA = /^[^a-zA-Z]*/;
 const REGEX_ALPHA_NUM = /[^a-zA-Z0-9]/g;
@@ -29,7 +28,7 @@ function _sanitizeAppName(name) {
     return name.toLowerCase().replace(REGEX_LEADING_ALPHA, '').replace(REGEX_ALPHA_NUM, '');
 }
 
-var dbName = _sanitizeAppName(process.env.NODE_RED_STORAGE_DB_NAME || IBMCloudEnv.getString('application_name') || "nodered");
+var dbName = _sanitizeAppName(process.env.NODE_RED_STORAGE_DB_NAME || "nodered");
 
 var userDir = path.join(__dirname,".node-red");
 // Ensure userDir exists - something that is normally taken care of by
@@ -103,7 +102,9 @@ if (!cloudantUrl) {
         // The name of the database to use
         db: dbName,
         // The prefix for all document names stored by this instance.
-        prefix: process.env.NODE_RED_STORAGE_APP_NAME || "nodered"
+        prefix: process.env.NODE_RED_STORAGE_APP_NAME || "nodered",
+        // IAM API key
+        apikey: cloudantApiKey,
     }
     console.log("Using Cloudant service: "+settings.cloudantService.name+" db:"+settings.cloudantService.db+" prefix:"+settings.cloudantService.prefix);
     settings.storageModule = require("./cloudantStorage");
