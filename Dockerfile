@@ -14,7 +14,7 @@ COPY . .
 ## Release image
 FROM registry.access.redhat.com/ubi8/nodejs-18-minimal:1
 
-COPY --from=build /opt/app-root/src /opt/app-root/src/
+COPY --from=build --chown=1001:0 /opt/app-root/src /opt/app-root/src/
 
 WORKDIR /opt/app-root/src
 
